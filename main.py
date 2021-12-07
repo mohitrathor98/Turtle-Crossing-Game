@@ -13,7 +13,7 @@ screen.tracer(0)
 TODO:
 
 1) Create random coloured cars at random locations == done
-2) Move cars from right to left
+2) Move cars from right to left == done
 3) Create a turtle and move it upward
 4) Detect turtle's collision with top
     --> Turtle goes back to original position
@@ -25,20 +25,18 @@ TODO:
     --> exit on click
 '''
 
-
-# car creation
-car = CarManager()
 car_list = []
 
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(0.5)
     screen.update()
     
-    # generate random number of cars
-    for car in range(random.randint(1, 3) + 1):
-        car_list.append(CarManager())
-    
+    # generate cars
+    car_list.append(CarManager())
+    # move cars
+    for car in car_list:
+        car.move_cars()
 
 
 screen.exitonclick()
