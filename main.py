@@ -28,6 +28,7 @@ TODO:
 
 car_list = []
 player = Player()
+score = Scoreboard()
 
 screen.listen()
 screen.onkey(player.up, "Up")
@@ -47,6 +48,7 @@ while game_is_on:
     # turtle collision with top
     if player.finish():
         player.goto_start()
+        score.update_level()
         CarManager.increase_speed()
 
 
