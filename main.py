@@ -9,23 +9,6 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
 
-'''
-TODO:
-
-1) Create random coloured cars at random locations == done
-2) Move cars from right to left == done
-3) Create a turtle and move it upward
-4) Detect turtle's collision with top
-    --> Turtle goes back to original position
-    --> player levels up
-    --> car's speed increases
-5) Create level board
-6) Detect turtle's collision with cars
-    --> Everything stops
-    --> Game over flashes
-    --> exit on click
-'''
-
 car_list = []
 player = Player()
 score = Scoreboard()
@@ -35,12 +18,15 @@ screen.onkey(player.up, "Up")
 
 
 game_is_on = True
+loop_count = 0
 while game_is_on:
-    time.sleep(0.5)
+    loop_count += 1
+    time.sleep(0.1)
     screen.update()
     
     # generate cars
-    car_list.append(CarManager())
+    if loop_count%6 == 0:
+        car_list.append(CarManager())
     # move cars
     for car in car_list:
         car.move_cars()
@@ -50,6 +36,12 @@ while game_is_on:
         player.goto_start()
         score.update_level()
         CarManager.increase_speed()
-
+        
+    # detect turtle's collision with cars
+    for car in car_list:
+        if player.distance(car) < 20:
+            game_is_on = False
+            score.game_over()
+            break
 
 screen.exitonclick()
