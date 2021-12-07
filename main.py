@@ -28,6 +28,10 @@ TODO:
 car_list = []
 player = Player()
 
+screen.listen()
+screen.onkeypress(player.up, "Up")
+
+
 game_is_on = True
 while game_is_on:
     time.sleep(0.5)
