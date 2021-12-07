@@ -19,7 +19,8 @@ TODO:
     --> Turtle goes back to original position
     --> player levels up
     --> car's speed increases
-5) Detect turtle's collision with cars
+5) Create level board
+6) Detect turtle's collision with cars
     --> Everything stops
     --> Game over flashes
     --> exit on click
@@ -29,7 +30,7 @@ car_list = []
 player = Player()
 
 screen.listen()
-screen.onkeypress(player.up, "Up")
+screen.onkey(player.up, "Up")
 
 
 game_is_on = True
@@ -42,6 +43,11 @@ while game_is_on:
     # move cars
     for car in car_list:
         car.move_cars()
+        
+    # turtle collision with top
+    if player.finish():
+        player.goto_start()
+        CarManager.increase_speed()
 
 
 screen.exitonclick()
