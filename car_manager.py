@@ -16,14 +16,15 @@ class CarManager(Turtle):
         self.penup()
         self.place_cars()
         self.setheading(180)
-        self.car_speed = MOVE_DISTANCE
+        CarManager.car_speed = MOVE_DISTANCE
 
     def place_cars(self):
         random_y = random.randrange(-250, 280)
         self.goto(280, random_y)
 
     def move_cars(self):
-        self.forward(self.car_speed)
+        self.forward(CarManager.car_speed)
     
+    @classmethod
     def increase_speed(self):
-        self.car_speed += MOVE_INCREMENT
+        CarManager.car_speed += MOVE_INCREMENT
