@@ -26,6 +26,7 @@ TODO:
 '''
 
 car_list = []
+player = Player()
 
 game_is_on = True
 while game_is_on:
